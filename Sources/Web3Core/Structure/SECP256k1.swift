@@ -20,7 +20,7 @@ public struct SECP256K1 {
     }
 }
 
-extension SECP256K1 {
+public extension SECP256K1 {
     static let context = secp256k1_context_create(UInt32(SECP256K1_CONTEXT_SIGN|SECP256K1_CONTEXT_VERIFY))
 
     public static func signForRecovery(hash: Data, privateKey: Data, useExtraEntropy: Bool = false) -> (serializedSignature: Data?, rawSignature: Data?) {
@@ -153,7 +153,7 @@ extension SECP256K1 {
         return Data(serializedPubkey)
     }
 
-    internal static func parsePublicKey(serializedKey: Data) -> secp256k1_pubkey? {
+    public static func parsePublicKey(serializedKey: Data) -> secp256k1_pubkey? {
         guard
             let context = context,
             (serializedKey.count == 33 || serializedKey.count == 65)
