@@ -20,6 +20,8 @@ public struct SECP256K1 {
     }
 }
 
+// CHANGED: MADE PUBLIC
+
 public extension SECP256K1 {
     static let context = secp256k1_context_create(UInt32(SECP256K1_CONTEXT_SIGN|SECP256K1_CONTEXT_VERIFY))
 
@@ -153,6 +155,8 @@ public extension SECP256K1 {
         return Data(serializedPubkey)
     }
 
+    // CHANGED: MADE PUBLIC FROM INTERNAL
+    
     public static func parsePublicKey(serializedKey: Data) -> secp256k1_pubkey? {
         guard
             let context = context,
