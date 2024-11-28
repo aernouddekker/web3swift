@@ -318,21 +318,21 @@ public extension SECP256K1 {
         return nil
     }
 
-    public static func unmarshalSignature(signatureData: Data) -> UnmarshaledSignature? {
-        if signatureData.count != 65 { return nil }
-        let v = signatureData[64]
-        let r = Data(signatureData[0..<32])
-        let s = Data(signatureData[32..<64])
-        return UnmarshaledSignature(v: v, r: r, s: s)
-    }
+        public static func unmarshalSignature(signatureData: Data) -> UnmarshaledSignature? {
+            if signatureData.count != 65 { return nil }
+            let v = signatureData[64]
+            let r = Data(signatureData[0..<32])
+            let s = Data(signatureData[32..<64])
+            return UnmarshaledSignature(v: v, r: r, s: s)
+        }
 
-    public static func marshalSignature(v: UInt8, r: [UInt8], s: [UInt8]) -> Data? {
-        guard r.count == 32, s.count == 32 else { return nil }
-        var completeSignature = Data(r)
-        completeSignature.append(Data(s))
-        completeSignature.append(Data([v]))
-        return completeSignature
-    }
+        public static func marshalSignature(v: UInt8, r: [UInt8], s: [UInt8]) -> Data? {
+            guard r.count == 32, s.count == 32 else { return nil }
+            var completeSignature = Data(r)
+            completeSignature.append(Data(s))
+            completeSignature.append(Data([v]))
+            return completeSignature
+        }
 
     public static func marshalSignature(v: Data, r: Data, s: Data) -> Data? {
         guard r.count == 32, s.count == 32 else { return nil }
